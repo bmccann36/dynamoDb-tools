@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist",
+    "rootDir": "./",
+    "noImplicitAny": false,
+    "types": [
+      "node",
+      "mocha",
+      "chai"
+    ]
+  },
+  "include": ["./**/*.spec.ts"],
+  "exclude": ["node_modules"]
+}

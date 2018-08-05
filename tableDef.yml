@@ -1,0 +1,30 @@
+PortCostsDynamoTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: PCM_LOCAL
+    AttributeDefinitions:
+    - AttributeName: id_column
+      AttributeType: S
+    - AttributeName: type_column
+      AttributeType: S
+    KeySchema:
+    - AttributeName: id_column
+      KeyType: HASH
+    - AttributeName: type_column
+      KeyType: RANGE
+    ProvisionedThroughput:
+      ReadCapacityUnits: 5
+      WriteCapacityUnits: 5 # can this be lower since there isn't a lot of write?
+    GlobalSecondaryIndexes:
+    - IndexName: invertedIndex
+      KeySchema:
+      - AttributeName: type_column
+        KeyType: HASH
+      - AttributeName: id_column
+        KeyType: RANGE
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5 # can this be lower since there isn't a lot of write?
+
